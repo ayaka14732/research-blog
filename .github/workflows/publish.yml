@@ -1,0 +1,42 @@
+name: Publish
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v2
+    - name: Install pandoc
+      run: |
+        # Create directory
+        mkdir -p ~/pandoc
+        cd ~/pandoc
+        # Download installer
+        curl -LsSo pandoc.deb https://github.com/jgm/pandoc/releases/download/2.19.2/pandoc-2.19.2-1-amd64.deb
+        # Extract pandoc binary
+        ar x pandoc.deb data.tar.gz && rm -f pandoc.deb
+        tar xvf data.tar.gz ./usr/bin/pandoc && rm -f data.tar.gz
+        mv usr/bin/pandoc . && rm -rf usr
+    - name: Build
+      run: |
+        # Add pandoc to PATH
+        export PATH=$PATH:~/pandoc
+        # Build
+        python3 build.py
+        # Remove source files
+        find . -name index.md -exec rm -rf {} +
+        # Remove all dot files except . and .git
+        find . -mindepth 1 -path './.git' -prune -o -name '.*' -exec rm -rf {} +
+    - name: Publish
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: .
+        user_name: 'github-actions[bot]'
+        user_email: '41898282+github-actions[bot]@users.noreply.github.com'
+        exclude_assets: '.github,README.md,build.py,pandoc.yaml'
