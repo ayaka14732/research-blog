@@ -1,0 +1,25 @@
+dir: ltr
+author: Ayaka
+lang: en-GB
+css:
+  - /pandoc.css
+  - /font.css
+header-includes:
+  - |
+    ```{=html}
+    <!-- Others -->
+    <meta property="og:image" content="https://avatars2.githubusercontent.com/u/68557794?s=400&u=343da7bebff676129e87341def71121ebffc4c9c&v=4"/>
+    <script>
+      window.addEventListener('DOMContentLoaded', function() {
+        var xs = document.getElementsByTagName('code');
+        for (var i = 0, len = xs.length; i < len; i++)
+          xs[i].lang = 'en-x-code';
+        xs = document.getElementsByClassName('footnote-back');
+        for (var i = 0, len = xs.length; i < len; i++)
+          xs[i].lang = 'en-x-code';
+        document.querySelectorAll('div.sourceCode > pre').forEach(function(x) {
+          x.classList.add('numberSource');
+        });
+      });
+    </script>
+    ```

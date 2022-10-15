@@ -1,0 +1,8 @@
+:lang(en) {
+	font-family: 'Times New Roman', Times, serif;
+}
+
+:lang(en-x-code) {
+	font-family: monospace, monospace, CharisSILW, "Roboto", "Source Han Sans K", "Noto Sans CJK KR", "PingFang HK", "PingFang TC", "Microsoft Jhenghei", HanaMin, monospace, monospace;
+	font-language-override: "KOR";
+}
