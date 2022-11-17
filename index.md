@@ -13,5 +13,6 @@ math: |-
 ---
 
 - [ARP 0: About Ayaka’s Research Blog](0/)
+- [ARP 1: The Wakong Algorithm and Its Python Implementation](1/)
 
 Ayaka's Research Blog is created by [Ayaka](https://github.com/ayaka14732).
